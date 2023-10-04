@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Our chat application</title>
+    
+        <link rel="stylesheet" href="css/style.css">
+        
+        <style>
+            body{
+                display: flex;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            aside{
+                flex: 1;
+            }
+
+            main{
+                flex: 4;
+            }
+
+            #tabs{
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            #tabs li{
+                padding: 10px;
+                text-transform: lowercase;
+            }
+
+            #tabs li.active{
+                background-color: aquamarine;
+                font-weight: bold;
+            }
+
+            #tabs li:not(.active){
+                cursor: pointer;
+            }
+
+            #content{
+                height: 90vh;
+                position: relative;
+            }
+
+            #writing{
+                position: absolute;
+                bottom: 0;
+                color: rgb(56, 55, 55);
+                font-style: italic;
+            }
+
+            #messages{
+                height: 100%;
+                background-color: aliceblue;
+                overflow-y: scroll;
+            }
+
+            #messages div{
+                margin: 0;
+                padding: 10px;
+            }
+
+            #messages :nth-child(odd){
+                background: #dddada;
+            }
+
+            form{
+                display: flex;
+            }
+
+            #name, #message{
+                padding: 10px;                
+            }
+
+            #name{
+                flex: 1;
+            }
+
+            #message{
+                flex: 5;
+            }
+
+            button{
+                flex: 1;
+                padding: 10px;
+                border: none;
+                background-color: #838383;
+            }
+        </style>
+    </head>
+
+    <body>
+        <aside>
+            <ul id="tabs">
+                <li class="active"># Général</li>
+            </ul>
+            <ul id="usersList"></ul>
+        </aside>
+
+        <main>
+            <div id="content">
+                <div id="messages"></div>
+                <ul id="writing"></div>
+            </div>
+            <form>
+                <input type="text" id="message" placeholder="Entrez votre message">
+                <button>Envoyer</button>
+            </form>
+        </main>
+        
+        <!-- On va chercher socket.io.js -->
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="js/script.js"></script>
+    </body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1", charset="utf-8">
+  <title>Logging page</title>
+  <style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+    form {border: 3px solid #f1f1f1;}
+
+    input[type=text] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #656565;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+
+    .imgcontainer {
+      text-align: center;
+      margin: 24px 0 12px 0;
+    }
+
+    img.avatar {
+      width: 40%;
+      border-radius: 50%;
+      border: 2px solid #656565;
+      width : 250px;
+      height: 250px;
+    }
+
+    .container {
+      padding: 16px;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {background-color: #ddd;}
+
+    .dropdown:hover .dropdown-content {display: block;}
+
+    .dropdown:hover .dropbtn {background-color: #3e8e41;}
+  </style>
+</head>
+
+<body>
+  <script>
+      function changeImage(element) {
+      var image = document.getElementById("avatar");
+      path = element;
+      image.setAttribute("src", path);	
+    }
+  
+    var loadFile = function(event) {
+      var inputImage = document.getElementById('input');
+      var image = document.getElementById("avatar");
+      path = URL.createObjectURL(event.target.files[0])
+      inputImage.src = path;
+      image.setAttribute("src", path);	
+    };
+  </script>
+
+  <h1>Log in</h1>
+ 
+  <div class="dropdown">
+      <button>Choose avatar</button>
+      <div class="dropdown-content">
+          <form>
+            <label for="img">choose my own avatar</label>
+            <input type="file" id="img" name="img" accept="image/*" onchange="loadFile(event)">
+            <img id="input" width="50" onclick ="changeImage(URL.createObjectURL(event.target.files[0]));">
+          </form>
+
+          <a href="#" onclick="changeImage('Avatar/puppy.jpeg');"><img src="Avatar/puppy.jpeg" width="50" height="50">puppy</a>
+          <a href="#" onclick="changeImage('Avatar/bunny.jpeg');"><img src="Avatar/bunny.jpeg" width="50" height="50">bunny</a>
+          <a href="#" onclick="changeImage('Avatar/cow.webp');"><img src="Avatar/cow.webp" width="50" height="50">cow</a>
+          <a href="#" onclick="changeImage('Avatar/bee.webp');"><img src="Avatar/bee.webp" width="50" height="50">bee</a>
+          <a href="#" onclick="changeImage('Avatar/fish.png');"><img src="Avatar/fish.png" width="50" height="50">fish</a>
+          <a href="#"  onclick="changeImage('Avatar/goat.png');"><img src="Avatar/goat.png" width="50" height="50" >goat</a>          
+      </div>
+  </div>
+
+  <div class="container">
+    <form action="/action_page.php" method="post">
+      <div class="imgcontainer">
+        <img id=avatar src="Avatar/chicken.gif" alt="Avatar" class="avatar">
+      </div>    
+    </form>
+
+    <form id="loginform">
+      <label><b></b></label>
+      <input type="text" placeholder="Enter Username" id="username" required>
+      <button type="submit">Login</button>
+    </form>      
+  </div>
+
+  <script>
+    document.getElementById("loginform").addEventListener("submit", function(event){
+      event.preventDefault();
+      var username = document.getElementById("username").value;
+      window.location.href = "chat.html?username=" + username; 
+    })
+
+    var loadFile = function(event) {
+      var inputImage = document.getElementById('input');
+      var image = document.getElementById("avatar");
+      path = URL.createObjectURL(event.target.files[0])
+      inputImage.src = path;
+      image.setAttribute("src", path);	
+    };
+  </script>
+</body>
+</html>
